@@ -12,7 +12,7 @@ import {
   providedIn: 'root',
 })
 export class MeasurementService {
-  private readonly apiUrl = 'http://localhost:8080/api/measurements'; // Adjust based on backend URL
+  private readonly apiUrl = 'http://localhost:8080/api/measurements';
 
   constructor(private http: HttpClient) {}
 
