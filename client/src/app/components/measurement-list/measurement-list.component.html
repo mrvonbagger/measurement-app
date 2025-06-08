@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="header">
+    <h3 class="title">Measurements</h3>
+  </div>
+
+  <div *ngIf="measurements.length === 0" class="empty-message">
+    No measurements found. Add your first measurement above.
+  </div>
+
+  <div *ngIf="measurements.length > 0" class="table-wrapper">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>UUID</th>
+          <th>Patient ID</th>
+          <th>Result</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let measurement of measurements">
+          <td class="mono">{{ measurement.uuid.substring(0, 8) }}...</td>
+          <td>{{ measurement.patientId }}</td>
+          <td>
+            <span
+              class="result"
+              [ngClass]="{
+                'result-green': measurement.result >= 80,
+                'result-yellow': measurement.result >= 65 && measurement.result < 80,
+                'result-red': measurement.result < 65
+              }"
+            >
+              {{ measurement.result }}
+            </span>
+          </td>
+          <td class="date">{{ measurement.createdAt | date : 'short' }}</td>
+          <td>
+            <div class="actions">
+              <button (click)="editMeasurement.emit(measurement)" class="edit-btn">Edit</button>
+              <button (click)="deleteMeasurement.emit(measurement.id!)" class="delete-btn">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

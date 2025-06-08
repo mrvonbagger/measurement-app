@@ -1,0 +1,45 @@
+ <div class="main-container">
+      <div class="content-wrapper">
+        <div class="page-header">
+          <h1 class="page-title">Measurement Management</h1>
+          <p class="page-subtitle">Manage patient measurements with validation (50.0-100.0 range)</p>
+        </div>
+
+        <!-- Alert Messages -->
+        <div *ngIf="successMessage" class="alert alert-success">
+          <span class="alert-text">{{ successMessage }}</span>
+          <button (click)="successMessage = ''" class="alert-close">×</button>
+        </div>
+
+        <div *ngIf="errorMessage" class="alert alert-error">
+          <span class="alert-text">{{ errorMessage }}</span>
+          <button (click)="errorMessage = ''" class="alert-close">×</button>
+        </div>
+
+        <div class="main-grid">
+          <!-- Form Section -->
+          <div class="form-section">
+            <app-measurement-form
+              [measurement]="editingMeasurement"
+              [isSubmitting]="isSubmitting"
+              (submitForm)="onSubmitForm($event)"
+              (cancelForm)="onCancelForm()"
+            ></app-measurement-form>
+          </div>
+
+          <!-- List Section -->
+          <div class="list-section">
+            <div *ngIf="isLoading" class="loading-container">
+              <div class="loading-spinner"></div>
+            </div>
+
+            <app-measurement-list
+              *ngIf="!isLoading"
+              [measurements]="measurements"
+              (editMeasurement)="onEditMeasurement($event)"
+              (deleteMeasurement)="onDeleteMeasurement($event)"
+            ></app-measurement-list>
+          </div>
+        </div>
+      </div>
+    </div>
