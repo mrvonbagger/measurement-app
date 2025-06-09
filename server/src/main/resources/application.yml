@@ -18,3 +18,11 @@ jpa:
 micronaut:
   server:
     port: 8080
+    cors:
+      enabled: true
+      allowed-origins:
+        - "http://localhost:4200"
+      allowed-methods:
+        - GET
+        - POST
+        - DELETE

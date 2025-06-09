@@ -34,13 +34,13 @@ public class Application {
 
         @Override
         public void onApplicationEvent(StartupEvent event) {
-            // Add small delay to ensure datasource is fully initialized
+            // Small delay to ensure datasource is fully initialized
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
             }
-            testDatabaseConnection();
+            // testDatabaseConnection();
             testMeasurementsTable();
         }
 
@@ -61,10 +61,6 @@ public class Application {
                     LOG.info("🚀 Driver: {} {}",
                             metaData.getDriverName(),
                             metaData.getDriverVersion());
-
-                    // Test query execution
-                    testBasicQuery(connection);
-
                 } else {
                     LOG.error("❌ Database connection is null or closed");
                 }
@@ -74,23 +70,6 @@ public class Application {
                 LOG.error("💡 Make sure MySQL server is running on localhost:3306");
                 LOG.error("💡 Check database credentials in application.yml");
                 LOG.error("💡 Verify database 'measurements_db' exists");
-            }
-        }
-
-        private void testBasicQuery(Connection connection) {
-            try {
-                String testQuery = "SELECT 1 as test_value, NOW() as current_time";
-                try (PreparedStatement stmt = connection.prepareStatement(testQuery);
-                        ResultSet rs = stmt.executeQuery()) {
-
-                    if (rs.next()) {
-                        LOG.info("🔍 Test query successful: value={}, time={}",
-                                rs.getInt("test_value"),
-                                rs.getTimestamp("current_time"));
-                    }
-                }
-            } catch (SQLException e) {
-                LOG.error("❌ Test query failed: {}", e.getMessage());
             }
         }
 
