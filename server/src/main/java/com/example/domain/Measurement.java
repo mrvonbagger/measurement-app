@@ -22,7 +22,7 @@ public class Measurement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "uuid", unique = true, nullable = false)
+    @Column(name = "uuid", nullable = false, unique = true, length = 36)
     private String uuid;
 
     @NotNull
@@ -35,7 +35,7 @@ public class Measurement {
     @Column(name = "result", nullable = false)
     private Double result;
 
-    @Column(name = "is_deleted", nullable = false)
+    @Column(name = "deleted", nullable = false)
     private Boolean isDeleted = false;
 
     @CreationTimestamp

@@ -17,25 +17,34 @@ dependencies {
     annotationProcessor("io.micronaut.openapi:micronaut-openapi")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     annotationProcessor("io.micronaut.validation:micronaut-validation-processor")
+    
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     implementation("io.micronaut.sql:micronaut-jdbc-hikari")
     implementation("io.micronaut.validation:micronaut-validation")
     implementation("jakarta.validation:jakarta.validation-api")
+    
+    // CORRECT transaction dependency for Micronaut
+    implementation("io.micronaut.data:micronaut-data-tx-hibernate")
+    
     compileOnly("io.micronaut:micronaut-http-client")
     compileOnly("io.micronaut.openapi:micronaut-openapi-annotations")
+    
     runtimeOnly("ch.qos.logback:logback-classic")
-    runtimeOnly("com.h2database:h2")
+    runtimeOnly("mysql:mysql-connector-java:8.0.33")
+    runtimeOnly("org.yaml:snakeyaml")
+    
     testImplementation("io.micronaut:micronaut-http-client")
 }
+
 
 
 application {
     mainClass = "com.example.Application"
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("24")
-    targetCompatibility = JavaVersion.toVersion("24")
+    sourceCompatibility = JavaVersion.toVersion("21")
+    targetCompatibility = JavaVersion.toVersion("21")
 }
 
 
@@ -64,7 +73,7 @@ micronaut {
 
 
 tasks.named("dockerfileNative") {
-    jdkVersion = "24"
+    jdkVersion = "21"
 }
 
 
