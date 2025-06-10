@@ -1,6 +1,6 @@
-package com.example.repository;
+package com.measurement_server.repository;
 
-import com.example.domain.Measurement;
+import com.measurement_server.domain.Measurement;
 import io.micronaut.data.annotation.Query;
 import io.micronaut.data.annotation.Repository;
 import io.micronaut.data.jpa.repository.JpaRepository;
@@ -26,10 +26,4 @@ public interface MeasurementRepository extends JpaRepository<Measurement, Long> 
     // Check if UUID exists (including deleted records)
     @Query("SELECT COUNT(m) > 0 FROM Measurement m WHERE m.uuid = :uuid")
     boolean existsByUuid(String uuid);
-
-    // // Find by UUID (including deleted records) - for internal use
-    // Optional<Measurement> findByUuidIncludingDeleted(String uuid);
-
-    // @Query("SELECT m FROM Measurement m WHERE m.uuid = :uuid")
-    // Optional<Measurement> findByUuidIncludingDeleted(String uuid);
 }

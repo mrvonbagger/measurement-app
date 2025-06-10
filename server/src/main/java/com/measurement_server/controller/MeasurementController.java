@@ -1,7 +1,7 @@
-package com.example.controller;
+package com.measurement_server.controller;
 
-import com.example.domain.Measurement;
-import com.example.repository.MeasurementRepository;
+import com.measurement_server.domain.Measurement;
+import com.measurement_server.repository.MeasurementRepository;
 import io.micronaut.http.annotation.*;
 
 import java.util.List;

@@ -1,0 +1,28 @@
+datasources:
+  default:
+    url: jdbc:mysql://localhost:3306/measurements_db
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    dialect: MySQL8
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
+        show_sql: true
+        dialect: org.hibernate.dialect.MySQLDialect
+
+micronaut:
+  server:
+    port: 8080
+    cors:
+      enabled: true
+      allowed-origins:
+        - "http://localhost:4200"
+      allowed-methods:
+        - GET
+        - POST
+        - DELETE

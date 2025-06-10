@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.measurement_server.domain;
 
 import io.micronaut.core.annotation.Introspected;
 import io.micronaut.serde.annotation.Serdeable;
